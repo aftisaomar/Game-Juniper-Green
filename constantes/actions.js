@@ -1,0 +1,6 @@
+export const SET_COMPUTER_VALUE = "SET_COMPUTER_VALUE"
+export const SET_USER_VALUE = "SET_USER_VALUE"
+export const GAME_OVER = "GAME_OVER"
+export const PUSH = "PUSH"
+export const RESET = "RESET"
+export const SET_TMP_USER_VALUE = "SET_TMP_USER_VALUE"
