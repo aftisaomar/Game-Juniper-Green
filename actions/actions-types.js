@@ -1,4 +1,4 @@
-import { SET_USER_VALUE, SET_TMP_USER_VALUE ,SET_COMPUTER_VALUE, GAME_OVER, PUSH, RESET } from "../constantes/actions"
+import { SET_USER_VALUE, SET_TMP_USER_VALUE ,SET_COMPUTER_VALUE, GAME_OVER, PUSH, RESET, WINNER_IS } from "../constantes/actions"
 
 
 
@@ -67,6 +67,18 @@ export const reset = () =>{
 
         type: RESET
 
+    }
+
+
+}
+
+
+export const setWinner =(payload) => {
+
+    return {
+
+        type : WINNER_IS,
+        payload
     }
 
 

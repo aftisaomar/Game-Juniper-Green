@@ -1,9 +1,10 @@
-import {PUSH, RESET} from '../constantes/actions'
+import {PUSH, RESET,WINNER_IS} from '../constantes/actions'
 
 
 const stateInit = {
 
     result : [],
+    userWin : null
 }
 
 
@@ -25,7 +26,15 @@ export default (state=stateInit,action={}) =>{
             return {
 
                 ...stateInit
-            }    
+            }
+            
+        case WINNER_IS :
+            
+            return {
+                ...state,
+                userWin : action.payload
+
+            }
 
         default:
           return state;

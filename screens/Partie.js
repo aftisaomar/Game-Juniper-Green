@@ -6,7 +6,7 @@ import { Text, StyleSheet, View, TextInput, TouchableOpacity, FlatList,SafeAreaV
 import styles from '../styles'
 import JuniperText from '../components/JuniperText';
 
-import {setUserValue, setTmpUserValue, setComputerValue, addResult, setGameOver, reset} from '../actions/actions-types'
+import {setUserValue, setTmpUserValue, setComputerValue, addResult, setGameOver, reset, setWinner} from '../actions/actions-types'
 import {checkValue, generateComputerValue} from '../utiles/functions'
 
 
@@ -19,7 +19,7 @@ const Partie = ({ navigation }) => {
     const dispatch = useDispatch()
 
     const {computerValue, userValue, valueUserTmp ,gameOver} = stateParty
-    const {result} = stateScore
+    const {result, userWin } = stateScore
 
     let resultString = ''
   
@@ -38,7 +38,7 @@ const Partie = ({ navigation }) => {
 
             }else{
 
-                dispatch(setGameOver())
+                dispatch(setWinner(true));
 
             }
 
@@ -55,6 +55,9 @@ const Partie = ({ navigation }) => {
 
     useEffect(()=>{
 
+
+        console.log('changemet du state userValue')
+
         // verifier si la valeur de l'utilisateur et correcter si c'est le cas
         // alors generer une valeur pour le computer 
         // sinon dispatcher un gameOver
@@ -65,12 +68,10 @@ const Partie = ({ navigation }) => {
                 dispatch(setComputerValue(generateComputerValue(result,userValue)));
             }else{
 
-                dispatch(setGameOver());
+                dispatch(setWinner(false));
 
             }
-
-         
-            
+ 
         }
         
 
@@ -88,10 +89,27 @@ const Partie = ({ navigation }) => {
 
             console.log('naviger vers la page Score')
 
+            navigation.navigate('Score',{userValue: userValue, computerValue : computerValue});
+
         }
 
 
     },[gameOver])
+
+
+    useEffect(()=>{
+
+        if(userWin != null){
+
+            console.log('naviger vers la page Score')
+
+            navigation.navigate('Score',{userValue: userValue, computerValue : computerValue});
+
+        }
+
+
+
+    },[userWin])
 
 
 

@@ -6,8 +6,6 @@ const stateInit = {
     computerValue : null,
     valueUserTmp : '',
     userValue : null,
-    gameOver : false,
-
 }
 
 
@@ -22,7 +20,7 @@ export default (state = stateInit, action = {}) =>{
             return{
 
                 ...state,
-                valueUserTmp : action.payload
+                valueUserTmp : action.payload,
             }
 
         case SET_COMPUTER_VALUE:
@@ -41,14 +39,7 @@ export default (state = stateInit, action = {}) =>{
                 userValue : action.payload
             }
 
-        case GAME_OVER: 
-        
-            return {
-                ...state,
-                gameOver: true
-
-            }
-
+    
         case RESET : 
             return {
 

@@ -14,7 +14,7 @@ export const checkValue = (proposedValues,previousValue, value) => {
     }
 
 
-    if((value == previousValue) || (proposedValues && proposedValues.find((element)=> element == value ))){
+    if((value == previousValue) || (value>100 || value<=0) || (proposedValues && proposedValues.find((element)=> element == value ))){
 
         return false;
     }else {
