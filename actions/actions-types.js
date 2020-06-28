@@ -1,4 +1,4 @@
-import { SET_USER_VALUE, SET_TMP_USER_VALUE ,SET_COMPUTER_VALUE, GAME_OVER, PUSH, RESET, WINNER_IS } from "../constantes/actions"
+import { SET_USER_VALUE, SET_TMP_USER_VALUE ,SET_COMPUTER_VALUE, PUSH, RESET, WINNER_IS, START_AT } from "../constantes/actions"
 
 
 
@@ -83,3 +83,16 @@ export const setWinner =(payload) => {
 
 
 }
+
+
+export const startGame = (payload) => {
+
+    return {
+
+        type : START_AT,
+        payload
+
+    }
+
+}
+

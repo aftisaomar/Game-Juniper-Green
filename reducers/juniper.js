@@ -1,5 +1,5 @@
 
-import {SET_COMPUTER_VALUE,SET_USER_VALUE,SET_TMP_USER_VALUE ,GAME_OVER, RESET} from '../constantes/actions'
+import {SET_COMPUTER_VALUE,SET_USER_VALUE,SET_TMP_USER_VALUE , RESET} from '../constantes/actions'
 
 const stateInit = {
 

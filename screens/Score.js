@@ -14,9 +14,10 @@ const Score = ({ navigation, route }) => {
     const userValue = route.params.userValue
     const computerValue = route.params.computerValue
 
-    const {result, userWin} = state
+    const {result, userWin, start_at} = state
     let resultString = ''
 
+    console.log(start_at)
 
     return(
 
@@ -30,10 +31,14 @@ const Score = ({ navigation, route }) => {
 
         </TouchableOpacity>
 
+        <JuniperText 
+            text = {start_at} 
+            fontSize = {12} 
+        />
 
         <JuniperText 
-            text = {`Le jeu est terminé, vous avez ${userWin ? 'gagné' : 'perdu'} en ${result.length/2}`} 
-            fontSize = {12} 
+            text = {`\nLe jeu est terminé, vous avez ${userWin ? 'gagné' : 'perdu'} en ${result.length/2} tours`} 
+            fontSize = {14} 
         />
 
         <TouchableOpacity style= {styles.buttonContainer} onPress = {() => {
