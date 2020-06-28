@@ -6,7 +6,7 @@ import { Text, StyleSheet, View, TextInput, TouchableOpacity, FlatList,SafeAreaV
 import styles from '../styles'
 import JuniperText from '../components/JuniperText';
 
-import {setUserValue, setTmpUserValue, setComputerValue, addResult,startGame , reset, setWinner} from '../actions/actions-types'
+import {setUserValue, setTmpUserValue, setComputerValue, addResult,startGame , reset, setWinner, initializeValues} from '../actions/actions-types'
 import {checkValue, generateComputerValue} from '../utiles/functions'
 
 
@@ -21,7 +21,7 @@ const Partie = ({ navigation }) => {
     const dispatch = useDispatch()
 
     const {computerValue, userValue, valueUserTmp ,gameOver} = stateParty
-    const {result, userWin } = stateScore
+    const {result, userWin, start_at } = stateScore
 
     let resultString = ''
   
@@ -36,7 +36,7 @@ const Partie = ({ navigation }) => {
                 dispatch(addResult(userValue,computerValue))
 
             }else{
-
+                console.log('fin du game computerValue')
                 dispatch(setWinner(true));
 
             }
@@ -57,22 +57,28 @@ const Partie = ({ navigation }) => {
 
         console.log('changemet du state userValue')
 
-        if(userValue != null ) {
+        if(userValue != null) {
 
+        
             if(checkValue(result,computerValue,userValue)){
 
                 dispatch(setComputerValue(generateComputerValue(result,userValue)));
             }else{
-
+                
+                console.log('fin du game')
                 dispatch(setWinner(false));
 
             }
- 
+
+
         }else{
             //premiere entréé dans ce screen donc prendre l'heure du commencement de la partie
-           const start = Date.now();
-           const date = new Date(start)
-           dispatch(startGame(date.toLocaleString()))
+           
+           if(start_at == null){
+               const start = Date.now();
+               const date = new Date(start)
+               dispatch(startGame(date.toLocaleString()))
+           }
         }
         
 
@@ -85,6 +91,7 @@ const Partie = ({ navigation }) => {
 
         if(userWin != null){
 
+            console.log(userWin)
             console.log('naviger vers la page Score')
 
             navigation.navigate('Score',{userValue: userValue, computerValue : computerValue});
@@ -104,15 +111,22 @@ const Partie = ({ navigation }) => {
 
             <TouchableOpacity 
              style= {styles.buttonContainer} 
-             onPress = {() => navigation.navigate('Home')}>
+             onPress = {() => {
+                navigation.navigate('Home')
+                dispatch(initializeValues())
+             }}>
 
-                <Text >Revenir à la page principale</Text>
+             <Text >Revenir à la page principale</Text>
 
             </TouchableOpacity>
 
             <TouchableOpacity 
              style= {styles.buttonContainer} 
-             onPress = {() => navigation.navigate('RegleDuJeu')}>
+             onPress = {() => {
+                navigation.navigate('RegleDuJeu')
+                dispatch(initializeValues())
+
+             }}>
 
                 <Text >Les règles du jeu</Text>
 

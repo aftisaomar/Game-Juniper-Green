@@ -9,9 +9,19 @@ export const checkValue = (proposedValues,previousValue, value) => {
     //cas initiale, debut de partie
     if(previousValue == null){
 
-        return (value<=100 && value>0)
+       if( proposedValues.length == 0){
 
+        return (value<=100 && value>0)
+       }else{
+
+        previousValue = proposedValues[proposedValues.length -1]
+
+       }
+
+        
     }
+
+    
 
 
     if((value == previousValue) || (value>100 || value<=0) || (proposedValues && proposedValues.find((element)=> element == value ))){
